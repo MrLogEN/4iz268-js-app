@@ -4,7 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <RootNamespace>_4iz268_js_app.backnend</RootNamespace>
+        <RootNamespace>_4iz268_stock_evidence.backend</RootNamespace>
     </PropertyGroup>
 
 </Project>

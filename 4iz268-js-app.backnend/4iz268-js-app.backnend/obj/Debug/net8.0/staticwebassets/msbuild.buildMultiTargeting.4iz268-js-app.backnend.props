@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\4iz268-js-app.backnend.props" />
-</Project>

@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Repositories\\FIS\\4iz268\\4iz268-js-app\\4iz268-js-app.backnend\\4iz268-js-app.backnend\\4iz268-js-app.backnend.csproj",
-      "projectName": "4iz268-js-app.backnend",
-      "projectPath": "E:\\Repositories\\FIS\\4iz268\\4iz268-js-app\\4iz268-js-app.backnend\\4iz268-js-app.backnend\\4iz268-js-app.backnend.csproj",
+      "projectUniqueName": "E:\\Repositories\\FIS\\4iz268\\4iz268-js-app\\4iz268-stock-evidence\\4iz268-stock-evidence.backend\\4iz268-stock-evidence.backend.csproj",
+      "projectName": "4iz268-stock-evidence.backend",
+      "projectPath": "E:\\Repositories\\FIS\\4iz268\\4iz268-js-app\\4iz268-stock-evidence\\4iz268-stock-evidence.backend\\4iz268-stock-evidence.backend.csproj",
       "packagesPath": "C:\\Users\\MrLog\\.nuget\\packages\\",
-      "outputPath": "E:\\Repositories\\FIS\\4iz268\\4iz268-js-app\\4iz268-js-app.backnend\\4iz268-js-app.backnend\\obj\\",
+      "outputPath": "E:\\Repositories\\FIS\\4iz268\\4iz268-js-app\\4iz268-stock-evidence\\4iz268-stock-evidence.backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\MrLog\\AppData\\Roaming\\NuGet\\NuGet.Config"
