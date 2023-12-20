@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\4iz268-js-app.backnend.props" />
+</Project>
