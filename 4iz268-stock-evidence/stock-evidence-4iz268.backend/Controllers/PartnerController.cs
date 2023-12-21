@@ -37,4 +37,33 @@ public class PartnerController : ControllerBase
         var result = await _appDbContext.Parts.FindAsync(id);
         return result;
     }
+
+    [HttpPut]
+    public async Task<int> UpdatePartner([FromBody] Partner updatedPartner)
+    {
+        var exists = await _appDbContext.Parts.FindAsync(updatedPartner.IdPart);
+        if (exists is null)
+        {
+            return StatusCodes.Status404NotFound;
+        }
+
+        _appDbContext.Parts.Attach(updatedPartner);
+        _appDbContext.Parts.Entry(updatedPartner).State = EntityState.Modified;
+        await _appDbContext.SaveChangesAsync();
+        return StatusCodes.Status200OK;
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<int> DeletePartner(string id)
+    {
+        var toDelete = await _appDbContext.Parts.FindAsync(id);
+        if (toDelete is null)
+        {
+            return StatusCodes.Status404NotFound;
+        }
+
+        _appDbContext.Parts.Remove(toDelete);
+        await _appDbContext.SaveChangesAsync();
+        return StatusCodes.Status200OK;
+    }
 }
