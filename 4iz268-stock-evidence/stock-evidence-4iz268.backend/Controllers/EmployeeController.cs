@@ -24,9 +24,10 @@ public class EmployeeController: ControllerBase
         return StatusCodes.Status200OK;
     }
     [HttpGet("{id}")]
-    public async Task<Employee?> GetEmployee(string id)
+    public async Task<ActionResult<Employee?>> GetEmployee(string id)
     {
-        throw new NotImplementedException();
+        var result = await _appDbContext.Emps.FindAsync(id);
+        return Ok(result);
     }
     [HttpGet]
     public async Task<IEnumerable<Employee>> GetAllEmployees()
