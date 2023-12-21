@@ -16,12 +16,12 @@ public class EmployeeController: ControllerBase
     }
 
     [HttpPost]
-    public async Task<int> CreateEmployee([FromBody] Employee newEmployee)
+    public async Task<IActionResult> CreateEmployee([FromBody] Employee newEmployee)
     {
         newEmployee.IdEmp = Guid.NewGuid().ToString();
         await _appDbContext.Emps.AddAsync(newEmployee);
         await _appDbContext.SaveChangesAsync();
-        return StatusCodes.Status200OK;
+        return Ok();
     }
     [HttpGet("{id}")]
     public async Task<ActionResult<Employee?>> GetEmployee(string id)
