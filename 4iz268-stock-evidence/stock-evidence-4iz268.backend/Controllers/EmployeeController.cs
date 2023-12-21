@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using stock_evidence.backend.Data;
 using stock_evidence.backend.Models;
 
@@ -30,9 +31,10 @@ public class EmployeeController: ControllerBase
         return Ok(result);
     }
     [HttpGet]
-    public async Task<IEnumerable<Employee>> GetAllEmployees()
+    public async Task<ActionResult<IEnumerable<Employee>>> GetAllEmployees()
     {
-        throw new NotImplementedException();
+        var result = await _appDbContext.Emps.ToListAsync();
+        return Ok(result);
     }
     [HttpPut]
     public async Task<int> UpdateEmployee([FromBody] Employee updatedEmployee)
