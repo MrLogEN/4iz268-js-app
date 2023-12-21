@@ -16,27 +16,27 @@ public partial class AppDbContext : DbContext
     {
     }
 
-    public virtual DbSet<Emp> Emps { get; set; }
+    public virtual DbSet<Employee> Emps { get; set; }
 
-    public virtual DbSet<Mat> Mats { get; set; }
+    public virtual DbSet<Material> Mats { get; set; }
 
-    public virtual DbSet<Part> Parts { get; set; }
+    public virtual DbSet<Partner> Parts { get; set; }
 
     public virtual DbSet<Stock> Stocks { get; set; }
 
-    public virtual DbSet<Wrh> Wrhs { get; set; }
+    public virtual DbSet<Warehouse> Wrhs { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseNpgsql("Name=ConnectionStrings:apiDb");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Emp>(entity =>
+        modelBuilder.Entity<Employee>(entity =>
         {
             entity.HasKey(e => e.IdEmp).HasName("pk_emp");
         });
 
-        modelBuilder.Entity<Mat>(entity =>
+        modelBuilder.Entity<Material>(entity =>
         {
             entity.HasKey(e => e.IdMat).HasName("pk_mat");
 
@@ -45,7 +45,7 @@ public partial class AppDbContext : DbContext
                 .HasConstraintName("fk_mat_supplies_part");
         });
 
-        modelBuilder.Entity<Part>(entity =>
+        modelBuilder.Entity<Partner>(entity =>
         {
             entity.HasKey(e => e.IdPart).HasName("pk_part");
         });
@@ -63,7 +63,7 @@ public partial class AppDbContext : DbContext
                 .HasConstraintName("fk_stock_stock2_wrhs");
         });
 
-        modelBuilder.Entity<Wrh>(entity =>
+        modelBuilder.Entity<Warehouse>(entity =>
         {
             entity.HasKey(e => e.IdWrhs).HasName("pk_wrhs");
 
@@ -74,10 +74,10 @@ public partial class AppDbContext : DbContext
             entity.HasMany(d => d.IdEmps).WithMany(p => p.IdWrhs)
                 .UsingEntity<Dictionary<string, object>>(
                     "Work",
-                    r => r.HasOne<Emp>().WithMany()
+                    r => r.HasOne<Employee>().WithMany()
                         .HasForeignKey("IdEmp")
                         .HasConstraintName("fk_works_works2_emp"),
-                    l => l.HasOne<Wrh>().WithMany()
+                    l => l.HasOne<Warehouse>().WithMany()
                         .HasForeignKey("IdWrhs")
                         .HasConstraintName("fk_works_works_wrhs"),
                     j =>

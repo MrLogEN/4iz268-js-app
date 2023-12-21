@@ -9,7 +9,7 @@ namespace stock_evidence.backend.Models;
 [Table("mat")]
 [Index("IdMat", Name = "mat_pk", IsUnique = true)]
 [Index("IdPart", Name = "supplies_fk")]
-public partial class Mat
+public partial class Material
 {
     [Key]
     [Column("id_mat")]
@@ -34,7 +34,7 @@ public partial class Mat
 
     [ForeignKey("IdPart")]
     [InverseProperty("Mats")]
-    public virtual Part IdPartNavigation { get; set; } = null!;
+    public virtual Partner IdPartNavigation { get; set; } = null!;
 
     [InverseProperty("IdMatNavigation")]
     public virtual ICollection<Stock> Stocks { get; set; } = new List<Stock>();

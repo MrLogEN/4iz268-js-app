@@ -8,7 +8,7 @@ namespace stock_evidence.backend.Models;
 
 [Table("emp")]
 [Index("IdEmp", Name = "emp_pk", IsUnique = true)]
-public partial class Emp
+public partial class Employee
 {
     [Key]
     [Column("id_emp")]
@@ -30,9 +30,9 @@ public partial class Emp
     public decimal WageEmp { get; set; }
 
     [InverseProperty("IdEmpNavigation")]
-    public virtual ICollection<Wrh> Wrhs { get; set; } = new List<Wrh>();
+    public virtual ICollection<Warehouse> Wrhs { get; set; } = new List<Warehouse>();
 
     [ForeignKey("IdEmp")]
     [InverseProperty("IdEmps")]
-    public virtual ICollection<Wrh> IdWrhs { get; set; } = new List<Wrh>();
+    public virtual ICollection<Warehouse> IdWrhs { get; set; } = new List<Warehouse>();
 }

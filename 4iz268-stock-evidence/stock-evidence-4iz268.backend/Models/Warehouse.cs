@@ -6,14 +6,19 @@ using Microsoft.EntityFrameworkCore;
 
 namespace stock_evidence.backend.Models;
 
-[Table("part")]
-[Index("IdPart", Name = "part_pk", IsUnique = true)]
-public partial class Part
+[Table("wrhs")]
+[Index("IdEmp", Name = "incharge_fk")]
+[Index("IdWrhs", Name = "wrhs_pk", IsUnique = true)]
+public partial class Warehouse
 {
     [Key]
-    [Column("id_part")]
+    [Column("id_wrhs")]
     [StringLength(36)]
-    public string IdPart { get; set; } = null!;
+    public string IdWrhs { get; set; } = null!;
+
+    [Column("id_emp")]
+    [StringLength(36)]
+    public string IdEmp { get; set; } = null!;
 
     [Column("name_part")]
     [StringLength(50)]
@@ -47,6 +52,14 @@ public partial class Part
     [StringLength(50)]
     public string StatePart { get; set; } = null!;
 
-    [InverseProperty("IdPartNavigation")]
-    public virtual ICollection<Mat> Mats { get; set; } = new List<Mat>();
+    [ForeignKey("IdEmp")]
+    [InverseProperty("Wrhs")]
+    public virtual Employee IdEmpNavigation { get; set; } = null!;
+
+    [InverseProperty("IdWrhsNavigation")]
+    public virtual ICollection<Stock> Stocks { get; set; } = new List<Stock>();
+
+    [ForeignKey("IdWrhs")]
+    [InverseProperty("IdWrhs")]
+    public virtual ICollection<Employee> IdEmps { get; set; } = new List<Employee>();
 }
