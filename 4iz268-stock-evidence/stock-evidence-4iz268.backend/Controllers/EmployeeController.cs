@@ -18,7 +18,10 @@ public class EmployeeController: ControllerBase
     [HttpPost]
     public async Task<int> CreateEmployee([FromBody] Employee newEmployee)
     {
-        throw new NotImplementedException();
+        newEmployee.IdEmp = Guid.NewGuid().ToString();
+        await _appDbContext.Emps.AddAsync(newEmployee);
+        await _appDbContext.SaveChangesAsync();
+        return StatusCodes.Status200OK;
     }
     [HttpGet("{id}")]
     public async Task<Employee?> GetEmployee(string id)
