@@ -37,9 +37,24 @@ public class EmployeeController: ControllerBase
         return Ok(result);
     }
     [HttpPut]
-    public async Task<int> UpdateEmployee([FromBody] Employee updatedEmployee)
+    public async Task<IActionResult> UpdateEmployee([FromBody] Employee updatedEmployee)
     {
-        throw new NotImplementedException();
+        var toUpdate = await _appDbContext.Emps.FindAsync(updatedEmployee.IdEmp);
+        if (toUpdate is null)
+        {
+            return NotFound();
+        }
+
+        toUpdate.Wrhs = updatedEmployee.Wrhs;
+        toUpdate.IdWrhs = updatedEmployee.IdWrhs;
+        toUpdate.NamesEmp = updatedEmployee.NamesEmp;
+        toUpdate.SurnEmp = updatedEmployee.SurnEmp;
+        toUpdate.SinceEmp = updatedEmployee.SinceEmp;
+        toUpdate.WageEmp = updatedEmployee.WageEmp;
+
+        _appDbContext.Emps.Entry(toUpdate).State = EntityState.Modified;
+        await _appDbContext.SaveChangesAsync();
+        return Ok();
     }
     [HttpDelete("{id}")]
     public async Task<int> DeleteEmployee(string id)
