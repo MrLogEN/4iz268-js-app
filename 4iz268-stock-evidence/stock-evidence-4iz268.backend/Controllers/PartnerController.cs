@@ -62,7 +62,7 @@ public class PartnerController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult DeletePartner(string id)
+    public async Task<IActionResult> DeletePartner(string id)
     {
         var toDelete = await _appDbContext.Parts.FindAsync(id);
         if (toDelete is null)
