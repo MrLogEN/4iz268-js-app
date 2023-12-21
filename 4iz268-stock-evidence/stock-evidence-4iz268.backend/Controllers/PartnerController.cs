@@ -16,35 +16,35 @@ public class PartnerController : ControllerBase
         _appDbContext = appDbContext;
     }
     [HttpPost]
-    public async Task<int> CreatePartner([FromBody]Partner newPartner)
+    public async Task<IActionResult> CreatePartner([FromBody]Partner newPartner)
     {
         newPartner.IdPart = Guid.NewGuid().ToString();
         await _appDbContext.AddAsync(newPartner);
         await _appDbContext.SaveChangesAsync();
-        return StatusCodes.Status200OK;
+        return Ok();
     }
 
     [HttpGet]
-    public async Task<IEnumerable<Partner>> GetAllPartners()
+    public async Task<ActionResult<IEnumerable<Partner>>> GetAllPartners()
     {
         var result = await _appDbContext.Parts.ToListAsync();
-        return result;
+        return Ok(result);
     }
 
     [HttpGet("{id}")]
-    public async Task<Partner?> GetPartner(string id)
+    public async Task<ActionResult<Partner?>> GetPartner(string id)
     {
         var result = await _appDbContext.Parts.FindAsync(id);
-        return result;
+        return Ok(result);
     }
 
     [HttpPut]
-    public async Task<int> UpdatePartner([FromBody] Partner updatedPartner)
+    public async Task<IActionResult> UpdatePartner([FromBody] Partner updatedPartner)
     {
         var exists = await _appDbContext.Parts.FindAsync(updatedPartner.IdPart);
         if (exists is null)
         {
-            return StatusCodes.Status404NotFound;
+            return NotFound();
         }
 
         exists.NamePart = updatedPartner.NamePart;
@@ -58,20 +58,20 @@ public class PartnerController : ControllerBase
         exists.Mats = updatedPartner.Mats;
         _appDbContext.Parts.Entry(exists).State = EntityState.Modified;
         await _appDbContext.SaveChangesAsync();
-        return StatusCodes.Status200OK;
+        return Ok();
     }
 
     [HttpDelete("{id}")]
-    public async Task<int> DeletePartner(string id)
+    public async Task<IActionResult DeletePartner(string id)
     {
         var toDelete = await _appDbContext.Parts.FindAsync(id);
         if (toDelete is null)
         {
-            return StatusCodes.Status404NotFound;
+            return NotFound();
         }
 
         _appDbContext.Parts.Remove(toDelete);
         await _appDbContext.SaveChangesAsync();
-        return StatusCodes.Status200OK;
+        return Ok();
     }
 }
