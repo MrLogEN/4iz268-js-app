@@ -15,38 +15,38 @@ public class MaterialController : ControllerBase
         _appDbContext = appDbContext;
     }
     [HttpPost]
-    public async Task<int> Create([FromBody] Material newMaterial)
+    public async Task<IActionResult> Create([FromBody] Material newMaterial)
     {
         newMaterial.IdMat = Guid.NewGuid().ToString();
         var mat = await _appDbContext.Mats.FindAsync(newMaterial.IdMat);
         if (mat is not null)
         {
-            return StatusCodes.Status409Conflict;
+            return Conflict();
         }
         await _appDbContext.Mats.AddAsync(newMaterial);
         await _appDbContext.SaveChangesAsync();
-        return StatusCodes.Status200OK;
+        return Ok();
     }
     [HttpGet("{id}")]
-    public async Task<Material?> GetMaterial(string id)
+    public async Task<ActionResult<Material?>> GetMaterial(string id)
     {
         var result = await _appDbContext.Mats.FindAsync(id);
-        return result;
+        return Ok(result);
     }
     [HttpGet]
-    public async Task<IEnumerable<Material>> GetAllMaterials()
+    public async Task<ActionResult<IEnumerable<Material>>> GetAllMaterials()
     {
         var result = await _appDbContext.Mats.ToListAsync();
-        return result;
+        return Ok(result);
     }
 
     [HttpPut]
-    public async Task<int> UpdateMaterial([FromBody] Material updatedMaterial)
+    public async Task<IActionResult> UpdateMaterial([FromBody] Material updatedMaterial)
     {
         var toUpdate = await _appDbContext.Mats.FindAsync(updatedMaterial.IdMat);
         if (toUpdate is null)
         {
-            return StatusCodes.Status404NotFound;
+            return NotFound();
         }
 
         toUpdate.Stocks = updatedMaterial.Stocks;
@@ -58,21 +58,21 @@ public class MaterialController : ControllerBase
         
         _appDbContext.Entry(toUpdate).State = EntityState.Modified;
         await _appDbContext.SaveChangesAsync();
-        return StatusCodes.Status200OK;
+        return Ok();
     }
 
     [HttpDelete("{id}")]
-    public async Task<int> DeleteMaterial(string id)
+    public async Task<IActionResult> DeleteMaterial(string id)
     {
         var toDelete = await _appDbContext.Mats.FindAsync(id);
         if (toDelete is null)
         {
-            return StatusCodes.Status404NotFound;
+            return NotFound();
         }
 
         _appDbContext.Mats.Remove(toDelete);
         await _appDbContext.SaveChangesAsync();
-        return StatusCodes.Status200OK;
+        return Ok();
     }
     
 }
