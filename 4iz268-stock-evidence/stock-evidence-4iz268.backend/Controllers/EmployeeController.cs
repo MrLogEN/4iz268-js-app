@@ -57,8 +57,16 @@ public class EmployeeController: ControllerBase
         return Ok();
     }
     [HttpDelete("{id}")]
-    public async Task<int> DeleteEmployee(string id)
+    public async Task<IActionResult> DeleteEmployee(string id)
     {
-        throw new NotImplementedException();
+        var toDelete = await _appDbContext.Emps.FindAsync(id);
+        if (toDelete is null)
+        {
+            return NotFound();
+        }
+
+        _appDbContext.Remove(toDelete);
+        await _appDbContext.SaveChangesAsync();
+        return Ok();
     }
 }
