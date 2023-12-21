@@ -47,8 +47,16 @@ public class PartnerController : ControllerBase
             return StatusCodes.Status404NotFound;
         }
 
-        _appDbContext.Parts.Attach(updatedPartner);
-        _appDbContext.Parts.Entry(updatedPartner).State = EntityState.Modified;
+        exists.NamePart = updatedPartner.NamePart;
+        exists.TelPart = updatedPartner.TelPart;
+        exists.StrtPart = updatedPartner.StrtPart;
+        exists.Strt2Part = updatedPartner.Strt2Part;
+        exists.Strt3Part = updatedPartner.Strt3Part;
+        exists.CityPart = updatedPartner.CityPart;
+        exists.PostPart = updatedPartner.PostPart;
+        exists.StatePart = updatedPartner.StatePart;
+        exists.Mats = updatedPartner.Mats;
+        _appDbContext.Parts.Entry(exists).State = EntityState.Modified;
         await _appDbContext.SaveChangesAsync();
         return StatusCodes.Status200OK;
     }

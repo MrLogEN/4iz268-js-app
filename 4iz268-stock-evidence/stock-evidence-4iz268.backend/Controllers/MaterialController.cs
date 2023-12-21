@@ -49,8 +49,14 @@ public class MaterialController : ControllerBase
             return StatusCodes.Status404NotFound;
         }
 
-        _appDbContext.Mats.Attach(updatedMaterial);
-        _appDbContext.Entry(updatedMaterial).State = EntityState.Modified;
+        toUpdate.Stocks = updatedMaterial.Stocks;
+        toUpdate.IdPart = updatedMaterial.IdPart;
+        toUpdate.DescMat = updatedMaterial.DescMat;
+        toUpdate.NameMat = updatedMaterial.NameMat;
+        toUpdate.IdPartNavigation = updatedMaterial.IdPartNavigation;
+        toUpdate.UnitMat = updatedMaterial.UnitMat;
+        
+        _appDbContext.Entry(toUpdate).State = EntityState.Modified;
         await _appDbContext.SaveChangesAsync();
         return StatusCodes.Status200OK;
     }
