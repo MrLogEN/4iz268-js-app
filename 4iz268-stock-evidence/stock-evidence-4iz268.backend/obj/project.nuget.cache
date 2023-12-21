@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Qfl+BHvGdHXo9xFrHeCPl58grOGhPP5z70nnLWtT2y3d+da6XPFRf6clIVDsydtooAjvsjKrsLV8ToUw1ga6Rg==",
+  "dgSpecHash": "IARdcplDBm4v92M5e3f7SPmAsGAfOPBtSoJHc3C7ipszDWLK44y17B5wzMPsR2ZQRNZ7tyr/sbzd1uAQaVZMYQ==",
   "success": true,
-  "projectFilePath": "E:\\Repositories\\FIS\\4iz268\\4iz268-js-app\\4iz268-stock-evidence\\4iz268-stock-evidence.backend\\4iz268-stock-evidence.backend.csproj",
+  "projectFilePath": "E:\\Repositories\\FIS\\4iz268\\4iz268-js-app\\4iz268-stock-evidence\\stock-evidence-4iz268.backend\\stock-evidence-4iz268.backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\MrLog\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\MrLog\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",

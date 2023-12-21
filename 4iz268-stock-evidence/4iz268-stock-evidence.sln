@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4iz268-stock-evidence.backend", "4iz268-stock-evidence.backend\4iz268-stock-evidence.backend.csproj", "{428FABBF-51F0-45F1-A928-EF51078622AB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stock-evidence-4iz268.backend", "stock-evidence-4iz268.backend\stock-evidence-4iz268.backend.csproj", "{428FABBF-51F0-45F1-A928-EF51078622AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
