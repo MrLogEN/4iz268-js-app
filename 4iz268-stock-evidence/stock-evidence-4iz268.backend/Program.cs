@@ -9,7 +9,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
-    options.UseNpgsql(Environment.GetEnvironmentVariable("ASPNETCORE_CONSTR"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("CON_STRING"));
 });
 
 var app = builder.Build();
