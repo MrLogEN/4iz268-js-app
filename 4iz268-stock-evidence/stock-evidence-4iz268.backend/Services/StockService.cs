@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using stock_evidence.backend.Data;
 using stock_evidence.backend.Models;
 
@@ -34,6 +35,20 @@ public class StockService
         }
 
         _context.Stocks.Remove(result);
+        await _context.SaveChangesAsync();
+        return result;
+    }
+
+    public async Task<Stock?> ChangeMaterialQuantityInWarehouse(string materialId, string warehouseId, double quantity)
+    {
+        var result = await _context.Stocks.FindAsync([materialId, warehouseId]);
+        if (result is null)
+        {
+            return null;
+        }
+
+        result.QuantStock = quantity;
+        _context.Stocks.Entry(result).State = EntityState.Modified;
         await _context.SaveChangesAsync();
         return result;
     }
