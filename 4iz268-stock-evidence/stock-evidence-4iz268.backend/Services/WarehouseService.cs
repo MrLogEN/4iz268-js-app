@@ -13,23 +13,23 @@ public class WarehouseService
         _conext = conext;
     }
 
-    public async Task InsertWarehouse(Warehouse newWarehouse)
+    public async Task InsertWarehouseAsync(Warehouse newWarehouse)
     {
         newWarehouse.IdWrhs = Guid.NewGuid().ToString();
         await _conext.Wrhs.AddAsync(newWarehouse);
         await _conext.SaveChangesAsync();
     }
-    public async Task<Warehouse?> GetWarehouse(string id)
+    public async Task<Warehouse?> GetWarehouseAsync(string id)
     {
         var result = await _conext.Wrhs.FindAsync(id);
         return result;
     }
-    public async Task<IEnumerable<Warehouse>> GetAllWarehouses()
+    public async Task<IEnumerable<Warehouse>> GetAllWarehousesAsync()
     {
         var result = await _conext.Wrhs.ToListAsync();
         return result;
     }
-    public async Task<Warehouse?> UpdateWarehouse(string id, Warehouse updated)
+    public async Task<Warehouse?> UpdateWarehouseAsync(string id, Warehouse updated)
     {
         var result = await _conext.Wrhs.FindAsync(id);
         if (result is null)
@@ -50,7 +50,7 @@ public class WarehouseService
         await _conext.SaveChangesAsync();
         return result;
     }
-    public async Task<Warehouse?> DeleteWarehouse(string id)
+    public async Task<Warehouse?> DeleteWarehouseAsync(string id)
     {
         var result = await _conext.Wrhs.FindAsync(id);
         if (result is null)
