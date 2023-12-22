@@ -19,13 +19,14 @@ public class WarehouseController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateWarehouse([FromBody] Warehouse warehouse)
     {
-        await _warehouseService.InsertWarehouse(warehouse);
+        await _warehouseService.InsertWarehouseAsync(warehouse);
         return Ok();
     }
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Warehouse>>> GetAllWarehouses()
     {
-        throw new NotImplementedException();
+        var result = await _warehouseService.GetAllWarehousesAsync();
+        return Ok(result);
     }
     [HttpGet("{id}")]
     public async Task<ActionResult<Warehouse?>> GetWarehouse(string id)
