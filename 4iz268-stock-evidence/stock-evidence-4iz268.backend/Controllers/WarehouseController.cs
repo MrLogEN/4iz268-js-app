@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using stock_evidence.backend.Data;
 using stock_evidence.backend.Models;
@@ -18,7 +19,9 @@ public class WarehouseController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateWarehouse([FromBody] Warehouse newWarehouse)
     {
-        throw new NotImplementedException();
+        await _appDbContext.Wrhs.AddAsync(newWarehouse);
+        await _appDbContext.SaveChangesAsync();
+        return Ok();
     }
 
     [HttpGet]
