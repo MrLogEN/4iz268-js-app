@@ -35,7 +35,12 @@ public class WarehouseController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<Warehouse?>> GetWarehouse(string id)
     {
-        throw new NotImplementedException();
+        var result = await _appDbContext.Wrhs.FindAsync(id);
+        if (result is null)
+        {
+            return NotFound();
+        }
+        return Ok(result);
     }
 
     [HttpPut]
