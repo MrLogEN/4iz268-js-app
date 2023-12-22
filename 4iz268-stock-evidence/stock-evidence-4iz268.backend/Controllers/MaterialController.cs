@@ -53,6 +53,12 @@ public class MaterialController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> CreateMaterialAsync(string id)
     {
-        throw new NotImplementedException();
+        var result = await _materialService.DeleteMaterialAsync(id);
+        if (result is null)
+        {
+            return NotFound();
+        }
+
+        return Ok();
     }
 }
