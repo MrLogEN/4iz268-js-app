@@ -58,8 +58,9 @@ public class StockController : ControllerBase
         return Ok(result);
     }
     [HttpGet("warehouse/{id}")]
-    public async Task<IActionResult> GetAllStockByWarehouseAsync(string id)
+    public async Task<ActionResult<IEnumerable<Stock>>> GetAllStockByWarehouseAsync(string id)
     {
-        throw new NotImplementedException();
+        var result = await _stockService.GetAllStocksFromWarehouseAsync(id);
+        return Ok(result);
     }
 }
