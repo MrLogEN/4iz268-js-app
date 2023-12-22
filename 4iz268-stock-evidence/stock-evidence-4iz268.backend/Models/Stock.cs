@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 namespace stock_evidence.backend.Models;
 
@@ -26,10 +27,12 @@ public partial class Stock
     [Column("quant_stock")]
     public double QuantStock { get; set; }
 
+    [JsonIgnore]
     [ForeignKey("IdMat")]
     [InverseProperty("Stocks")]
     public virtual Material IdMatNavigation { get; set; } = null!;
-
+    
+    [JsonIgnore]
     [ForeignKey("IdWrhs")]
     [InverseProperty("Stocks")]
     public virtual Warehouse IdWrhsNavigation { get; set; } = null!;
