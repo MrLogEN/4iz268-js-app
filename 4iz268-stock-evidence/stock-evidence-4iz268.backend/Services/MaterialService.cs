@@ -15,9 +15,11 @@ public class MaterialService
         _conext = conext;
     }
 
-    public async Task<Material?> InsertMaterial(Material newMaterial)
+    public async Task InsertMaterial(Material newMaterial)
     {
-        throw new NotImplementedException();
+        newMaterial.IdMat = Guid.NewGuid().ToString();
+        await _conext.Mats.AddAsync(newMaterial);
+        await _conext.SaveChangesAsync();
     }
     public async Task<Material?> GetMaterial(string id)
     {
