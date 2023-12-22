@@ -24,4 +24,17 @@ public class StockService
         await _context.SaveChangesAsync();
         return stock;
     }
+
+    public async Task<Stock?> RemoveMaterialFromWarehouse(string materialId, string warehouseId)
+    {
+        var result = await _context.Stocks.FindAsync([materialId, warehouseId]);
+        if (result is null)
+        {
+            return null;
+        }
+
+        _context.Stocks.Remove(result);
+        await _context.SaveChangesAsync();
+        return result;
+    }
 }
