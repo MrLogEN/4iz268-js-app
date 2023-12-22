@@ -52,4 +52,13 @@ public class StockService
         await _context.SaveChangesAsync();
         return result;
     }
+
+    public async Task<IEnumerable<Stock>> GetAllMaterialStocksAsync(string materialId)
+    {
+        throw new NotImplementedException();
+    }
+    public async Task<IEnumerable<Stock>> GetAllStocksFromWarehouseAsync(string warehouseId)
+    {
+        throw new NotImplementedException();
+    }
 }
