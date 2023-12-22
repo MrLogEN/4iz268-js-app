@@ -60,6 +60,7 @@ public class StockService
     }
     public async Task<IEnumerable<Stock>> GetAllStocksFromWarehouseAsync(string warehouseId)
     {
-        throw new NotImplementedException();
+        var result = await _context.Stocks.Where(s => s.IdWrhs == warehouseId).ToListAsync();
+        return result;
     }
 }
