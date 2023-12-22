@@ -46,7 +46,26 @@ public class WarehouseController : ControllerBase
     [HttpPut]
     public async Task<IActionResult> UpdateWarehouse([FromBody] Warehouse updatedWarehouse)
     {
-        throw new NotImplementedException();
+        var toUpdate = await _appDbContext.Wrhs.FindAsync(updatedWarehouse.IdWrhs);
+        if (toUpdate is null)
+        {
+            return NotFound();
+        }
+
+        toUpdate.IdEmp = updatedWarehouse.IdEmp;
+        toUpdate.Stocks = updatedWarehouse.Stocks;
+        toUpdate.CityPart = updatedWarehouse.CityPart;
+        toUpdate.NamePart = updatedWarehouse.NamePart;
+        toUpdate.PostPart = updatedWarehouse.PostPart;
+        toUpdate.Strt3Part = updatedWarehouse.Strt3Part;
+        toUpdate.Strt2Part = updatedWarehouse.Strt2Part;
+        toUpdate.StrtPart = updatedWarehouse.StrtPart;
+        toUpdate.TelPart = updatedWarehouse.TelPart;
+        toUpdate.IdEmpNavigation = updatedWarehouse.IdEmpNavigation;
+
+        _appDbContext.Wrhs.Entry(toUpdate).State = EntityState.Modified;
+        await _appDbContext.SaveChangesAsync();
+        return Ok();
     }
 
     [HttpDelete("{id}")]
