@@ -55,7 +55,8 @@ public class StockService
 
     public async Task<IEnumerable<Stock>> GetAllMaterialStocksAsync(string materialId)
     {
-        throw new NotImplementedException();
+        var result = await _context.Stocks.Where(s => s.IdMat == materialId).ToListAsync();
+        return result;
     }
     public async Task<IEnumerable<Stock>> GetAllStocksFromWarehouseAsync(string warehouseId)
     {
