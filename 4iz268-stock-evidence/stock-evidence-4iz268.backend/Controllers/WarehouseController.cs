@@ -71,6 +71,14 @@ public class WarehouseController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteWarehouse(string id)
     {
-        throw new NotImplementedException();
+        var toDelete = await _appDbContext.Wrhs.FindAsync(id);
+        if (toDelete is null)
+        {
+            return NotFound();
+        }
+
+        _appDbContext.Wrhs.Remove(toDelete);
+        await _appDbContext.SaveChangesAsync();
+        return Ok();
     }
 }
