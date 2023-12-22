@@ -31,7 +31,13 @@ public class StockController : ControllerBase
     [HttpDelete]
     public async Task<IActionResult> RemoveStockAsync([FromBody] Stock stock)
     {
-        throw new NotImplementedException();
+        var result = await _stockService.RemoveMaterialFromWarehouseAsync(stock.IdMat, stock.IdWrhs);
+        if (result is null)
+        {
+            return NotFound();
+        }
+
+        return Ok();
     }
     [HttpPut]
     public async Task<IActionResult> ChangeQuantityStockAsync([FromBody] Stock stock)
