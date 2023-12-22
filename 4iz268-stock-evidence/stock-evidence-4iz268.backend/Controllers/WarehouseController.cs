@@ -17,19 +17,19 @@ public class WarehouseController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateWarehouse([FromBody] Warehouse warehouse)
+    public async Task<IActionResult> CreateWarehouseAsync([FromBody] Warehouse warehouse)
     {
         await _warehouseService.InsertWarehouseAsync(warehouse);
         return Ok();
     }
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Warehouse>>> GetAllWarehouses()
+    public async Task<ActionResult<IEnumerable<Warehouse>>> GetAllWarehousesAsync()
     {
         var result = await _warehouseService.GetAllWarehousesAsync();
         return Ok(result);
     }
     [HttpGet("{id}")]
-    public async Task<ActionResult<Warehouse?>> GetWarehouse(string id)
+    public async Task<ActionResult<Warehouse?>> GetWarehouseAsync(string id)
     {
         var result = await _warehouseService.GetWarehouseAsync(id);
         if (result is null)
@@ -39,7 +39,7 @@ public class WarehouseController : ControllerBase
         return Ok(result);
     }
     [HttpPut("{id}")]
-    public async Task<ActionResult<Warehouse?>> UpdateWarehouse(string id, [FromBody] Warehouse warehouse)
+    public async Task<ActionResult<Warehouse?>> UpdateWarehouseAsync(string id, [FromBody] Warehouse warehouse)
     {
         var result = await _warehouseService.UpdateWarehouseAsync(id, warehouse);
         if (result is null)
@@ -50,7 +50,7 @@ public class WarehouseController : ControllerBase
         return Ok(result);
     }
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteWarehouse(string id)
+    public async Task<IActionResult> DeleteWarehouseAsync(string id)
     {
         var result = await _warehouseService.DeleteWarehouseAsync(id);
         if (result is null)
