@@ -4,16 +4,14 @@ using stock_evidence.backend.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<AppDbContext>(options =>
+builder.Services.AddDbContext<EvidenceDbContext>(options =>
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("CON_STRING"));
+    options.UseNpgsql(Environment.GetEnvironmentVariable("CON_STRING"));
 });
 
 var app = builder.Build();
-
 
 app.MapControllers();
 
