@@ -19,7 +19,8 @@ public class WarehouseController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateWarehouse([FromBody] Warehouse warehouse)
     {
-        throw new NotImplementedException();
+        await _warehouseService.InsertWarehouse(warehouse);
+        return Ok();
     }
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Warehouse>>> GetAllWarehouses()
