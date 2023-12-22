@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using stock_evidence.backend.Data;
 using stock_evidence.backend.Models;
 
@@ -27,7 +28,8 @@ public class WarehouseController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Warehouse>>> GetAllWarehouses()
     {
-        throw new NotImplementedException();
+        var result = await _appDbContext.Wrhs.ToListAsync();
+        return Ok(result);
     }
 
     [HttpGet("{id}")]
