@@ -13,17 +13,34 @@ public class StockService
         _context = context;
     }
 
-    public async Task<Stock?> AddMaterialToWarehouseAsync(Stock stock)
+    public async Task<Stock?> AddMaterialToWarehouseAsync(StockDto dto)
     {
-        var alreadyExists = await _context.Stocks.FindAsync([stock.IdMat, stock.IdWrhs]);
+        var alreadyExists = await _context.Stocks.FindAsync([dto.MaterialId, dto.WarehouseId]);
         if (alreadyExists is not null)
         {
             return null;
         }
 
-        await _context.Stocks.AddAsync(stock);
+        var material = await _context.Mats.FindAsync(dto.MaterialId);
+        var warehouse = await _context.Wrhs.FindAsync(dto.WarehouseId);
+        if ((material is null) || (warehouse is null))
+        {
+            return null;
+        }
+
+        var result = new Stock
+        {
+            IdMat = dto.MaterialId,
+            IdMatNavigation = material,
+            IdWrhs = dto.WarehouseId,
+            IdWrhsNavigation = warehouse,
+            QuantStock = dto.Quantity
+        };
+        
+
+        await _context.Stocks.AddAsync(result);
         await _context.SaveChangesAsync();
-        return stock;
+        return result;
     }
 
     public async Task<Stock?> RemoveMaterialFromWarehouseAsync(string materialId, string warehouseId)
@@ -64,3 +81,5 @@ public class StockService
         return result;
     }
 }
+public record StockDto(string MaterialId, string WarehouseId, double Quantity);
+public record StockDtoIds(string MaterialId, string WarehouseId);
