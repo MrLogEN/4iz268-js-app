@@ -12,9 +12,9 @@ builder.Services.AddDbContext<EvidenceDbContext>(options =>
 {
     options.UseNpgsql(Environment.GetEnvironmentVariable("CON_STRING"));
 });
-builder.Services.AddSingleton<MaterialService>();
-builder.Services.AddSingleton<WarehouseService>();
-builder.Services.AddSingleton<StockService>();
+builder.Services.AddScoped<MaterialService>();
+builder.Services.AddScoped<WarehouseService>();
+builder.Services.AddScoped<StockService>();
 
 var app = builder.Build();
 
