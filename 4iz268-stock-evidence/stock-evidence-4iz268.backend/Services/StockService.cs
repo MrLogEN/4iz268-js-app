@@ -13,7 +13,7 @@ public class StockService
         _context = context;
     }
 
-    public async Task<Stock?> AddMaterialToWarehouse(Stock stock)
+    public async Task<Stock?> AddMaterialToWarehouseAsync(Stock stock)
     {
         var alreadyExists = await _context.Stocks.FindAsync([stock.IdMat, stock.IdWrhs]);
         if (alreadyExists is not null)
@@ -26,7 +26,7 @@ public class StockService
         return stock;
     }
 
-    public async Task<Stock?> RemoveMaterialFromWarehouse(string materialId, string warehouseId)
+    public async Task<Stock?> RemoveMaterialFromWarehouseAsync(string materialId, string warehouseId)
     {
         var result = await _context.Stocks.FindAsync([materialId, warehouseId]);
         if (result is null)
@@ -39,7 +39,7 @@ public class StockService
         return result;
     }
 
-    public async Task<Stock?> ChangeMaterialQuantityInWarehouse(string materialId, string warehouseId, double quantity)
+    public async Task<Stock?> ChangeMaterialQuantityInWarehouseAsync(string materialId, string warehouseId, double quantity)
     {
         var result = await _context.Stocks.FindAsync([materialId, warehouseId]);
         if (result is null)
