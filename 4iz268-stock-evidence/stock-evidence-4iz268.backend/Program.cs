@@ -14,6 +14,7 @@ builder.Services.AddDbContext<EvidenceDbContext>(options =>
 });
 builder.Services.AddSingleton<MaterialService>();
 builder.Services.AddSingleton<WarehouseService>();
+builder.Services.AddSingleton<StockService>();
 
 var app = builder.Build();
 
