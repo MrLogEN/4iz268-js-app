@@ -52,9 +52,10 @@ public class StockController : ControllerBase
         return Ok();
     }
     [HttpGet("material/{id}")]
-    public async Task<IActionResult> GetAllStockByMaterialAsync(string id)
+    public async Task<ActionResult<IEnumerable<Stock>>> GetAllStockByMaterialAsync(string id)
     {
-        throw new NotImplementedException();
+        var result = await _stockService.GetAllMaterialStocksAsync(id);
+        return Ok(result);
     }
     [HttpGet("warehouse/{id}")]
     public async Task<IActionResult> GetAllStockByWarehouseAsync(string id)
