@@ -15,23 +15,23 @@ public class MaterialService
         _conext = conext;
     }
 
-    public async Task InsertMaterial(Material newMaterial)
+    public async Task InsertMaterialAsync(Material newMaterial)
     {
         newMaterial.IdMat = Guid.NewGuid().ToString();
         await _conext.Mats.AddAsync(newMaterial);
         await _conext.SaveChangesAsync();
     }
-    public async Task<Material?> GetMaterial(string id)
+    public async Task<Material?> GetMaterialAsync(string id)
     {
         var result = await _conext.Mats.FindAsync(id);
         return result;
     }
-    public async Task<IEnumerable<Material>> GetAllMaterials()
+    public async Task<IEnumerable<Material>> GetAllMaterialsAsync()
     {
         var result = await _conext.Mats.ToListAsync();
         return result;
     }
-    public async Task<Material?> UpdateMaterial(string id, Material updated)
+    public async Task<Material?> UpdateMaterialAsync(string id, Material updated)
     {
         var result = await _conext.Mats.FindAsync(id);
         if (result is null)
@@ -48,7 +48,7 @@ public class MaterialService
         await _conext.SaveChangesAsync();
         return result;
     }
-    public async Task<Material?> DeleteMaterial(string id)
+    public async Task<Material?> DeleteMaterialAsync(string id)
     {
         var result = await _conext.Mats.FindAsync(id);
         if (result is null)
