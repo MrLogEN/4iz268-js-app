@@ -13,15 +13,15 @@ public partial class EvidenceDbContext : DbContext
     {
     }
 
-    public virtual DbSet<Mat> Mats { get; set; }
+    public virtual DbSet<Material> Mats { get; set; }
 
     public virtual DbSet<Stock> Stocks { get; set; }
 
-    public virtual DbSet<Wrh> Wrhs { get; set; }
+    public virtual DbSet<Warehouse> Wrhs { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Mat>(entity =>
+        modelBuilder.Entity<Material>(entity =>
         {
             entity.HasKey(e => e.IdMat).HasName("pk_mat");
         });
@@ -35,7 +35,7 @@ public partial class EvidenceDbContext : DbContext
             entity.HasOne(d => d.IdWrhsNavigation).WithMany(p => p.Stocks).HasConstraintName("fk_stock_stock2_wrhs");
         });
 
-        modelBuilder.Entity<Wrh>(entity =>
+        modelBuilder.Entity<Warehouse>(entity =>
         {
             entity.HasKey(e => e.IdWrhs).HasName("pk_wrhs");
         });

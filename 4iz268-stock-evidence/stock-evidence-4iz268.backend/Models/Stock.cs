@@ -28,9 +28,9 @@ public partial class Stock
 
     [ForeignKey("IdMat")]
     [InverseProperty("Stocks")]
-    public virtual Mat IdMatNavigation { get; set; } = null!;
+    public virtual Material IdMatNavigation { get; set; } = null!;
 
     [ForeignKey("IdWrhs")]
     [InverseProperty("Stocks")]
-    public virtual Wrh IdWrhsNavigation { get; set; } = null!;
+    public virtual Warehouse IdWrhsNavigation { get; set; } = null!;
 }

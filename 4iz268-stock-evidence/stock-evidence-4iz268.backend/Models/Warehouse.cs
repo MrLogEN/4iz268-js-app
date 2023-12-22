@@ -8,7 +8,7 @@ namespace stock_evidence.backend.Models;
 
 [Table("wrhs")]
 [Index("IdWrhs", Name = "wrhs_pk", IsUnique = true)]
-public partial class Wrh
+public partial class Warehouse
 {
     [Key]
     [Column("id_wrhs")]

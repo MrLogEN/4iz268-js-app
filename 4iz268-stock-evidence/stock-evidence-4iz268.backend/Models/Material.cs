@@ -8,7 +8,7 @@ namespace stock_evidence.backend.Models;
 
 [Table("mat")]
 [Index("IdMat", Name = "mat_pk", IsUnique = true)]
-public partial class Mat
+public partial class Material
 {
     [Key]
     [Column("id_mat")]
