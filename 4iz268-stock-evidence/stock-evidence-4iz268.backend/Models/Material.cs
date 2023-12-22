@@ -26,7 +26,7 @@ public partial class Material
     [Column("unit_mat")]
     [StringLength(6)]
     public string UnitMat { get; set; } = null!;
-
+    
     [InverseProperty("IdMatNavigation")]
     public virtual ICollection<Stock> Stocks { get; set; } = new List<Stock>();
 }

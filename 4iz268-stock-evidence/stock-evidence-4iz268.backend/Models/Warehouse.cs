@@ -46,7 +46,7 @@ public partial class Warehouse
     [Column("state_wrhs")]
     [StringLength(50)]
     public string StateWrhs { get; set; } = null!;
-
+    
     [InverseProperty("IdWrhsNavigation")]
     public virtual ICollection<Stock> Stocks { get; set; } = new List<Stock>();
 }
