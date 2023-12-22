@@ -42,7 +42,14 @@ public class StockController : ControllerBase
     [HttpPut]
     public async Task<IActionResult> ChangeQuantityStockAsync([FromBody] Stock stock)
     {
-        throw new NotImplementedException();
+        var result = await _stockService
+                .ChangeMaterialQuantityInWarehouseAsync(stock.IdMat, stock.IdWrhs, stock.QuantStock);
+        if (result is null)
+        {
+            return NotFound();
+        }
+
+        return Ok();
     }
     [HttpGet("material/{id}")]
     public async Task<IActionResult> GetAllStockByMaterialAsync(string id)
