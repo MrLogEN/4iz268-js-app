@@ -31,12 +31,33 @@ public class MaterialService
         var result = await _conext.Mats.ToListAsync();
         return result;
     }
-    public async Task<Material?> UpdateMaterial(Material updated)
+    public async Task<Material?> UpdateMaterial(string id, Material updated)
     {
-        throw new NotImplementedException();
+        var result = await _conext.Mats.FindAsync(id);
+        if (result is null)
+        {
+            return null;
+        }
+
+        result.NameMat = updated.NameMat;
+        result.DescMat = updated.DescMat;
+        result.UnitMat = updated.UnitMat;
+        result.Stocks = updated.Stocks;
+
+        _conext.Mats.Entry(result).State = EntityState.Modified;
+        await _conext.SaveChangesAsync();
+        return result;
     }
     public async Task<Material?> DeleteMaterial(string id)
     {
-        throw new NotImplementedException();
+        var result = await _conext.Mats.FindAsync(id);
+        if (result is null)
+        {
+            return null;
+        }
+
+        _conext.Mats.Remove(result);
+        await _conext.SaveChangesAsync();
+        return result;
     }
 }
