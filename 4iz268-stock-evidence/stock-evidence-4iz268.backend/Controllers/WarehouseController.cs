@@ -41,7 +41,13 @@ public class WarehouseController : ControllerBase
     [HttpPut("{id}")]
     public async Task<ActionResult<Warehouse?>> UpdateWarehouse(string id, [FromBody] Warehouse warehouse)
     {
-        throw new NotImplementedException();
+        var result = await _warehouseService.UpdateWarehouseAsync(id, warehouse);
+        if (result is null)
+        {
+            return NotFound();
+        }
+
+        return Ok(result);
     }
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteWarehouse(string id)
