@@ -19,12 +19,14 @@ public class MaterialController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateMaterialAsync([FromBody] Material material)
     {
-        throw new NotImplementedException();
+        await _materialService.InsertMaterialAsync(material);
+        return Ok();
     }
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Material>>> GetAllMaterialAsync()
     {
-        throw new NotImplementedException();
+        var result = await _materialService.GetAllMaterialsAsync();
+        return Ok(result);
     }
     [HttpGet("{id}")]
     public async Task<ActionResult<Material?>> GetMaterialAsync(string id)
