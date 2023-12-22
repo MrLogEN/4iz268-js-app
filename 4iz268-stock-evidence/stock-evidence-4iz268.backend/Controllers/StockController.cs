@@ -19,7 +19,13 @@ public class StockController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateStockAsync([FromBody] Stock stock)
     {
-        throw new NotImplementedException();
+        var result = await _stockService.AddMaterialToWarehouseAsync(stock);
+        if (result is null)
+        {
+            return Conflict();
+        }
+
+        return Ok(result);
     }
 
     [HttpDelete]
