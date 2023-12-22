@@ -26,9 +26,10 @@ public class MaterialService
         var result = await _conext.Mats.FindAsync(id);
         return result;
     }
-    public async Task<IEnumerable<Material>> GetAllMaterial()
+    public async Task<IEnumerable<Material>> GetAllMaterials()
     {
-        throw new NotImplementedException();
+        var result = await _conext.Mats.ToListAsync();
+        return result;
     }
     public async Task<Material?> UpdateMaterial(Material updated)
     {
