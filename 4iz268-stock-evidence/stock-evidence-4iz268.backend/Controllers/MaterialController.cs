@@ -42,7 +42,13 @@ public class MaterialController : ControllerBase
     [HttpPut("{id}")]
     public async Task<ActionResult<Material?>> UpdateMaterialAsync(string id, [FromBody] Material material)
     {
-        throw new NotImplementedException();
+        var result = await _materialService.UpdateMaterialAsync(id, material);
+        if (result is null)
+        {
+            return NotFound();
+        }
+
+        return Ok(result);
     }
     [HttpDelete("{id}")]
     public async Task<IActionResult> CreateMaterialAsync(string id)
