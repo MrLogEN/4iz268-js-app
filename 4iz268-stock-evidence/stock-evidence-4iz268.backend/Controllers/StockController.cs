@@ -17,7 +17,7 @@ public class StockController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateStockAsync([FromBody] Stock stock)
+    public async Task<IActionResult> CreateStockAsync([FromBody] StockDto stock)
     {
         var result = await _stockService.AddMaterialToWarehouseAsync(stock);
         if (result is null)
@@ -29,9 +29,9 @@ public class StockController : ControllerBase
     }
 
     [HttpDelete]
-    public async Task<IActionResult> RemoveStockAsync([FromBody] Stock stock)
+    public async Task<IActionResult> RemoveStockAsync([FromBody] StockDtoIds stock)
     {
-        var result = await _stockService.RemoveMaterialFromWarehouseAsync(stock.IdMat, stock.IdWrhs);
+        var result = await _stockService.RemoveMaterialFromWarehouseAsync(stock.MaterialId, stock.WarehouseId);
         if (result is null)
         {
             return NotFound();
@@ -40,10 +40,10 @@ public class StockController : ControllerBase
         return Ok();
     }
     [HttpPut]
-    public async Task<IActionResult> ChangeQuantityStockAsync([FromBody] Stock stock)
+    public async Task<IActionResult> ChangeQuantityStockAsync([FromBody] StockDto stock)
     {
         var result = await _stockService
-                .ChangeMaterialQuantityInWarehouseAsync(stock.IdMat, stock.IdWrhs, stock.QuantStock);
+                .ChangeMaterialQuantityInWarehouseAsync(stock.MaterialId, stock.WarehouseId, stock.Quantity);
         if (result is null)
         {
             return NotFound();
