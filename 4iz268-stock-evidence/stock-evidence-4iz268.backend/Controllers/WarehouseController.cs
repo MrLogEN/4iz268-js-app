@@ -31,7 +31,12 @@ public class WarehouseController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<Warehouse?>> GetWarehouse(string id)
     {
-        throw new NotImplementedException();
+        var result = await _warehouseService.GetWarehouseAsync(id);
+        if (result is null)
+        {
+            return NotFound();
+        }
+        return Ok(result);
     }
     [HttpPut("{id}")]
     public async Task<ActionResult<Warehouse?>> UpdateWarehouse(string id, [FromBody] Warehouse warehouse)
