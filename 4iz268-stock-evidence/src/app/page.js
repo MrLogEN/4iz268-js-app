@@ -1,4 +1,5 @@
-import Image from 'next/image'
+
+import PrimaryLinkButton from "@/app/ui/PrimaryLinkButton";
 
 export default function Home() {
   return (
@@ -19,6 +20,9 @@ export default function Home() {
               <article className='text-gray-500 text-justify py-2'>
                   <h2 className='font-bold text-black'>Dashboard</h2>
                   <p>Everything operation regarding material such as adding, updating or deleting can do through the <em>dashboard</em></p>
+                  <div className='flex flex-row pt-2 justify-start'>
+                      <PrimaryLinkButton text={'Dashboard'} url={'/dashboard'} rightIcon={'/images/linkIcon.svg'}></PrimaryLinkButton>
+                  </div>
               </article>
           </main>
       </>
