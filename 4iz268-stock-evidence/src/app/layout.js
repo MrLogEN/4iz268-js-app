@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
 import MainMenuItem from "@/app/ui/MainMenuItem";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -31,8 +32,8 @@ export default function RootLayout({ children }) {
                 <img src={'/images/evidenceLogo.svg'} className='h-6' alt='Stock Evidence Co. logo'></img>
                 <p>&#0169;2023 Vilém Charwot</p>
             </div>
-            <a href={'/home'}>Home</a>
-            <a href={'/contact'}>Contact</a>
+            <Link href={'/home'}>Home</Link>
+            <Link href={'/contact'}>Contact</Link>
         </footer>
     </div>
     </body>

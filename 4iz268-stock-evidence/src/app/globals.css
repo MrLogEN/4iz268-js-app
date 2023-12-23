@@ -3,3 +3,6 @@
 @tailwind utilities;
 
 
+.circle{
+    border-radius: 20rem;
+}
