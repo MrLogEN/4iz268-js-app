@@ -2,13 +2,16 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import MainMenuItem from "@/app/ui/MainMenuItem";
 import Link from "next/link";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
     title: 'Stock Evidence',
     description: 'Evidence of material stock of fictional company.',
-    author: 'Vilém Charwot'
+    authors: [{name: 'Vilém Charwot', url: 'https://eso.vse.cz/~chav07/portfolio'}],
+    creator: 'Vilém Charwot',
+    applicationName: 'Stock Evidence',
 }
 
 export default function RootLayout({ children }) {

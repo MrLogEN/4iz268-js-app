@@ -1,5 +1,5 @@
 
-export default function (){
+export default function PlusMenu(){
     return(
         <div className='fixed flex flex-col bottom-[5.5rem] right-[2.75rem]'>
             <div className='shadow-sm shadow-gray-500 flex flex-col rounded-t-md rounded-bl-md'>
