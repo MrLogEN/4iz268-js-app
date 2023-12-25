@@ -1,9 +1,11 @@
 import GetMaterials from "@/app/lib/GetMaterials";
-import MainMenuItem from "@/app/ui/MainMenuItem";
 import MaterialItem from "@/app/ui/MaterialItem";
 export default async function MaterialList(){
     const result = await GetMaterials();
-    if (result == null || result.length < 1){
+    // return (
+    //     <p>{result?.length}</p>
+    // )
+    if (result == null || result?.length < 1){
         return (
             <p>Zadny material</p>
         )
