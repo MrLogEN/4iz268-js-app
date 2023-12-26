@@ -18,7 +18,7 @@ export default function MaterialItem({material}){
             <div title={material.nameMat} className='col-start-2 col-end-2 px-2  text-sm'>{partialName}</div>
             <div title={material.descMat} className='col-start-3 col-end-3 text-gray-500 text-sm'>{partialDescription}</div>
             <div title={material.unitMat} className='col-start-4 col-end-4 text-center text-sm'>{material.unitMat}</div>
-            <ToolsGroup itemId={material.idMat}></ToolsGroup>
+            <ToolsGroup item={material} type={'material'}></ToolsGroup>
         </li>
     )
 }

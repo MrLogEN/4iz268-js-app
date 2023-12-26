@@ -11,7 +11,11 @@ export const metadata = {
     authors: [{name: 'Vilém Charwot', url: 'https://eso.vse.cz/~chav07/portfolio'}],
     creator: 'Vilém Charwot',
     applicationName: 'Stock Evidence',
-    viewport: 'width=device-width, initial-scale=1.0'
+    //viewport: 'width=device-width, initial-scale=1.0'
+}
+export const viewport ={
+    width: 'device-width',
+    scale:'1.0'
 }
 
 export default function RootLayout({ children }) {

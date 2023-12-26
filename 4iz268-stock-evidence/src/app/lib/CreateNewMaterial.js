@@ -14,10 +14,6 @@ export default async function CreateNewMaterial(currentState, formData){
         DescMat: formData.get('descMat'),
         UnitMat: formData.get('unitMat')
     }
-    if (newMaterial.UnitMat.length > 6){
-        return {message: 'Measurement unit cannot have more than 6 characters!', style:'text-red-700'};
-
-    }
 
     const requestData = JSON.stringify(newMaterial);
     try {

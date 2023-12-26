@@ -1,21 +1,48 @@
 'use client'
 import {DeleteMaterial} from "@/app/lib/DeleteMaterial";
+import {usePathname} from "next/navigation";
+import {DeleteWarehouse} from "@/app/lib/DeleteWarehouse";
+import {DeleteStock} from "@/app/lib/DeleteStock";
+const ConfirmationAlert =async (item, type)=>{
+    let deleteFunc = async (item)=>false;
 
-const ConfirmationAlert =async (itemId)=>{
-    const result = confirm('Do you wish to delete material with id: ' + itemId +'?');
+    if (type === 'material'){
+        deleteFunc = DeleteMaterial;
+    }
+    if (type === 'warehouse'){
+        deleteFunc = DeleteWarehouse;
+    }
+    if (type === 'stock'){
+        deleteFunc = DeleteStock;
+    }
+
+    const result = confirm(`Do you wish to delete ${type} ${item?.idMat? ' with matID: '+item?.idMat : '' } ${item?.idWrhs? ' with wrhsID: '+item?.idWrhs : '' }?`);
     if (result){
-        const deleted = await DeleteMaterial(itemId)
+        const deleted = await deleteFunc(item);
         if (deleted){
-            const material = document.getElementById(itemId);
-            material.remove();
+            let element = null;
+
+            if (type === 'material'){
+                deleteFunc = DeleteMaterial;
+                element  = document.getElementById(item.idMat);
+            }
+            if (type === 'warehouse'){
+                deleteFunc = DeleteWarehouse;
+                element  = document.getElementById(item.idWrhs);
+
+            }
+            if (type === 'stock'){
+                deleteFunc = DeleteStock;
+                //#TODO element removal
+            }
+            element.remove();
         }
     }
 }
 
-export default function TrashButton({itemId}){
-
+export default function TrashButton({item, type}){
     return(
-        <button title='Delete' onClick={()=>ConfirmationAlert(itemId)}>
+        <button title='Delete' onClick={()=>ConfirmationAlert(item, type)}>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path className='fill-red-700'
                     d="M20 6.21053H16V4.10526C16 3.54691 15.7893 3.01143 15.4142 2.61662C15.0391 2.2218 14.5304 2 14 2H10C9.46957 2 8.96086 2.2218 8.58579 2.61662C8.21071 3.01143 8 3.54691 8 4.10526V6.21053H4C3.73478 6.21053 3.48043 6.32143 3.29289 6.51884C3.10536 6.71624 3 6.98398 3 7.26316C3 7.54233 3.10536 7.81007 3.29289 8.00748C3.48043 8.20489 3.73478 8.31579 4 8.31579H5V19.8947C5 20.4531 5.21071 20.9886 5.58579 21.3834C5.96086 21.7782 6.46957 22 7 22H17C17.5304 22 18.0391 21.7782 18.4142 21.3834C18.7893 20.9886 19 20.4531 19 19.8947V8.31579H20C20.2652 8.31579 20.5196 8.20489 20.7071 8.00748C20.8946 7.81007 21 7.54233 21 7.26316C21 6.98398 20.8946 6.71624 20.7071 6.51884C20.5196 6.32143 20.2652 6.21053 20 6.21053ZM10 4.10526H14V6.21053H10V4.10526ZM17 19.8947H7V8.31579H17V19.8947Z"

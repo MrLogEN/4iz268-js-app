@@ -1,6 +1,21 @@
-export default function EditButton({itemId}) {
+'use client'
+import {useRouter} from "next/navigation";
+
+export default function EditButton({item, type}) {
+
+    const router = useRouter();
+    let urlToRedirect = '';
+    if (type==='material'){
+        urlToRedirect = `/dashboard/edit/material?materialId=${item.idMat}&materialName=${item.nameMat}&materialDesc=${item.descMat}&materialUnit=${item.unitMat}`;
+    }
+    if (type==='warehouse'){
+        urlToRedirect = `/dashboard/edit/warehouse?warehouseId=${item.idWrhs}&warehouseName=${item.nameWrhs}&warehouseTel=${item.telWrhs}&warehouseStrt2=${item.strt2Wrhs}&warehouseStrt=${item.strtWrhs}&warehouseStrt3=${item.strt3Wrhs}&warehouseCity=${item.cityWrhs}&warehousePost=${item.postWrhs}&warehouseState=${item.stateWrhs}`;
+    }
+    if (type==='stock'){
+        urlToRedirect = `/dashboard/edit/stock?materialId=${item.idWrhs}&warehouseId=${item.idWrhs}`;
+    }
     return (
-        <button>
+        <button onClick={()=>router.push(urlToRedirect)}>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path className='fill-gray-500'
                 d="M15.7618 18.9188C15.7618 18.9614 15.7458 19.0022 15.7173 19.0322C15.6887 19.0623 15.65 19.0792 15.6096 19.0792H4.97535C4.93498 19.0792 4.89626 19.0623 4.86771 19.0322C4.83916 19.0022 4.82312 18.9614 4.82312 18.9188V7.71491C4.82312 7.67237 4.83916 7.63157 4.86771 7.6015C4.89626 7.57142 4.93498 7.55452 4.97535 7.55452H11.5167L13.3398 5.63374H4.97535C4.4516 5.63425 3.94945 5.85368 3.5791 6.24386C3.20875 6.63404 3.00048 7.1631 3 7.71491V18.9188C3.00048 19.4706 3.20875 19.9997 3.5791 20.3899C3.94945 20.7801 4.4516 20.9995 4.97535 21H15.6096C16.1334 20.9995 16.6355 20.7801 17.0059 20.3899C17.3762 19.9997 17.5845 19.4706 17.585 18.9188V12.0271L15.7618 13.9478V18.9188Z"
