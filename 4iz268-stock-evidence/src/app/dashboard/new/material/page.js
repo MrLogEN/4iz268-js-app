@@ -31,7 +31,7 @@ export default function NewMaterialPage() {
                 {/*<button type='submit' className='border-2 px-4 py-2 rounded-md bg-blue-700 text-white'>Create</button>*/}
                 <SubmitButton></SubmitButton>
             </div>
-            <p aria-live='polite' role='status'>
+            <p aria-live='polite' role='status' className={state?.style}>
                 {state?.message}
             </p>
         </form>
