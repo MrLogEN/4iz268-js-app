@@ -23,16 +23,13 @@ const ConfirmationAlert =async (item, type)=>{
             let element = null;
 
             if (type === 'material'){
-                deleteFunc = DeleteMaterial;
                 element  = document.getElementById(item.idMat);
             }
             if (type === 'warehouse'){
-                deleteFunc = DeleteWarehouse;
                 element  = document.getElementById(item.idWrhs);
 
             }
             if (type === 'stock'){
-                deleteFunc = DeleteStock;
                 //#TODO element removal
             }
             element.remove();
