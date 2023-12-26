@@ -5,14 +5,20 @@ import {fromJSON} from "postcss";
 export default async function CreateNewMaterial(currentState, formData){
 
     if (!formData){
-        return {message:"Failed to create material."}
+        return {message:"Failed to create material.", style:'text-red-700'}
     }
+
     const newMaterial = {
         IdMat:'placeholder',
         NameMat: formData.get('nameMat'),
         DescMat: formData.get('descMat'),
         UnitMat: formData.get('unitMat')
     }
+    if (newMaterial.UnitMat.length > 6){
+        return {message: 'Measurement unit cannot have more than 6 characters!', style:'text-red-700'};
+
+    }
+
     const requestData = JSON.stringify(newMaterial);
     try {
         const envVar = process.env.STOCK_API_ROUTE;
@@ -25,11 +31,11 @@ export default async function CreateNewMaterial(currentState, formData){
             body: requestData
         });
         if (response.ok){
-            return {message: 'Material created successfully.'}
+            return {message: 'Material created successfully.', style:'text-green-700'}
         }
-        return {message: response.status + ' ' + response.statusText + '\n' + requestData };
+        return {message: response.status + ' ' + response.statusText, style:'text-red-700'};
     }
     catch (ex){
-        return {message: "Failed to create material."};
+        return {message: "Failed to create material.", style:'text-red-700'};
     }
 }
