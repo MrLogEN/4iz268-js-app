@@ -22,13 +22,21 @@ function collapseDetails(event){
 }
 
 export default function WarehouseItem({warehouse}) {
+    let name = warehouse.nameWrhs;
+    let id = warehouse.idWrhs;
+
+    if (name.length > 12){
+        name = name.slice(0, 11) + '...';
+    }
+
+
     return (
         <li title='Warehouse record' key={warehouse.idWrhs} className='flex flex-col' onClick={collapseDetails}>
 
-            <div className='flex flex-row justify-between bg-gray-100 px-4 py-2 text-sm'>
-                <div>{warehouse.nameWrhs}</div>
-                <div className='text-gray-700'>{warehouse.idWrhs}</div>
-                <div className='flex flex-row gap-4'>
+            <div className='grid grid-cols-4 bg-gray-100 px-4 py-2 text-sm'>
+                <div className='col-start-1 col-end-1'>{name}</div>
+                <div className='text-gray-700 col-start-2 col-span-2'>{warehouse.idWrhs}</div>
+                <div className='flex flex-row gap-4 justify-between col-start-4 col-end-4'>
                     <ToolsGroup item={warehouse} type={'warehouse'}></ToolsGroup>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path
@@ -40,11 +48,19 @@ export default function WarehouseItem({warehouse}) {
 
             <div className='flex flex-col px-4 py-2 collapse'>
                 <div className='grid grid-cols-2 border-b-[1px]'>
+                    <p className='col-start-1 col-end-1'>ID:</p>
+                    <div className='col-start-2 col-end-2'>{warehouse.idWrhs}</div>
+                </div>
+                <div className='grid grid-cols-2 border-b-[1px]'>
+                    <p className='col-start-1 col-end-1'>Tel:</p>
+                    <div className='col-start-2 col-end-2'>{warehouse.nameWrhs}</div>
+                </div>
+                <div className='grid grid-cols-2 border-b-[1px]'>
                     <p className='col-start-1 col-end-1'>Tel:</p>
                     <div className='col-start-2 col-end-2'>{warehouse.telWrhs}</div>
                 </div>
                 <div className='grid grid-cols-2 border-b-[1px]'>
-                <p className='col-start-1 col-end-1'>Street:</p>
+                    <p className='col-start-1 col-end-1'>Street:</p>
                     <div className='col-start-2 col-end-2'>{warehouse.strtWrhs}</div>
                 </div>
                 <div className='grid grid-cols-2 border-b-[1px]'>
