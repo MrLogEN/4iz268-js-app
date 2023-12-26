@@ -1,5 +1,8 @@
 import {FormData} from "next/dist/compiled/@edge-runtime/primitives";
 
+export const metadata = {
+    title: 'Stock Evidence - New Material'
+}
 export default function NewMaterialLayout({children}){
     return(
         <>

@@ -1,6 +1,9 @@
 import SectionMenu from "@/app/ui/SectionMenu";
 import PlusButton from "@/app/ui/PlusButton";
 
+export const metadata = {
+    title: 'Stock Evidence - Dashboard'
+}
 export default function DashboardLayout({children}){
     return(
         <>

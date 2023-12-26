@@ -1,5 +1,8 @@
 import MaterialList from "@/app/ui/MaterialList";
 
+export const metadata = {
+    title: 'Stock Evidence - Materials'
+}
 export default function MaterialLayout({children}){
     return (
         <ul>
