@@ -80,6 +80,34 @@ public class StockService
         var result = await _context.Stocks.Where(s => s.IdWrhs == warehouseId).ToListAsync();
         return result;
     }
+    public async Task<IEnumerable<MaterialStockDto>> GetWarehousesMaterials(string warehouseId)
+    {
+        //var result = await _context.Stocks.Where(s => s.IdWrhs == warehouseId).ToListAsync();
+        var result = await _context.Stocks
+            .Join(_context.Wrhs,
+                s => s.IdWrhs,
+                w => w.IdWrhs,
+                (s, w) => new
+                {
+                    w.IdWrhs,
+                    w.NameWrhs,
+                    s.IdMat,
+                    s.QuantStock
+                })
+            .Where(s => s.IdWrhs == warehouseId)
+            .Join(_context.Mats,
+                q => q.IdMat,
+                m => m.IdMat,
+                (q, m) =>
+                    new MaterialStockDto(q.IdWrhs, q.NameWrhs, m.IdMat, m.NameMat, q.QuantStock)
+                )
+            .ToListAsync();
+        return result;
+    }
 }
+
+public record MaterialStockDto(string idWrhs,string nameWrhs ,string idMat, string nameMat, double Quantity);
+
 public record StockDto(string MaterialId, string WarehouseId, double Quantity);
 public record StockDtoIds(string MaterialId, string WarehouseId);
+
