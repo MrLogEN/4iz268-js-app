@@ -6,7 +6,7 @@ export const metadata = {
 export default function NewMaterialLayout({children}){
     return(
         <>
-            <h3 className='font-bold'>New Material</h3>
+            <h2 className='text-2xl'>New Material</h2>
             {children}
         </>
     )
