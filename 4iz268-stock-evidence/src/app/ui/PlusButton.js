@@ -3,16 +3,18 @@ import {useRef} from "react";
 import PlusMenu from "@/app/ui/PlusMenu";
 import {useState} from "react";
 
-export default ()=>{
+export default function PlusButton(){
     const containerRef = useRef(null);
-    const [opacity, setOpacity] = useState(0);
+    const [visibility, setVisibility] = useState('hidden');
     function AppendSelection(){
-        if (opacity === 0){
-            containerRef.current.style.opacity = 100;
-            setOpacity(100);
+        if (visibility === 'hidden'){
+            containerRef.current.classList.remove('hidden');
+            containerRef.current.classList.add('visible');
+            setVisibility('visible');
         }else {
-            containerRef.current.style.opacity = 0;
-            setOpacity(0);
+            containerRef.current.classList.remove('visible');
+            containerRef.current.classList.add('hidden');
+            setVisibility('hidden');
         }
     }
 
@@ -28,7 +30,7 @@ export default ()=>{
                 </svg>
 
             </div>
-            <div ref={containerRef} className='opacity-0 transition-opacity'>
+            <div ref={containerRef} className='hidden'>
                 <PlusMenu></PlusMenu>
             </div>
         </div>
