@@ -63,4 +63,11 @@ public class StockController : ControllerBase
         var result = await _stockService.GetAllStocksFromWarehouseAsync(id);
         return Ok(result);
     }
+
+    [HttpGet("experimental/warehouse/{id}")]
+    public async Task<ActionResult<IEnumerable<MaterialStockDto>>> GetAllWarehouseMaterials(string id)
+    {
+        var result = await _stockService.GetWarehousesMaterials(id);
+        return Ok(result);
+    }
 }
