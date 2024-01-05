@@ -1,5 +1,6 @@
 import GetMaterials from "@/app/lib/GetMaterials";
 import MaterialItem from "@/app/ui/MaterialItem";
+import MaterialItem2 from "@/app/ui/MaterialItem2";
 export default async function MaterialList(){
     const result = await GetMaterials();
     // return (
@@ -13,7 +14,7 @@ export default async function MaterialList(){
     else{
         const listOfMaterials = [];
         result.forEach(material => listOfMaterials.push(
-           <MaterialItem material={material}></MaterialItem>
+            <MaterialItem2 material={material}></MaterialItem2>
         ))
         return (
             <div className='flex flex-col gap-0'>

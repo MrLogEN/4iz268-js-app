@@ -6,7 +6,7 @@ export default function WarehousePage(){
         <div>
             <div className='grid grid-cols-4 pb-2 px-4'>
                 <div className='text-center border-r-2'>Name</div>
-                <div className='text-center border-r-2 col-span-2'>Id</div>
+                <div className='text-center border-r-2 col-span-2'>ID</div>
                 <div className='text-center'>Operation</div>
 
             </div>
