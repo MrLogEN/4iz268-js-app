@@ -1,9 +1,9 @@
-'use client'
+'use server'
 
-export function GetWarehousesForSelect(){
+export async function GetWarehousesForSelect(){
     const api = process.env.STOCK_API_ROUTE;
     const apiUrl = `${api}/api/warehouse`;
-    const response = fetch(apiUrl, {
+    const response =  await fetch(apiUrl, {
         method: "GET",
         cache: "no-cache"
     })

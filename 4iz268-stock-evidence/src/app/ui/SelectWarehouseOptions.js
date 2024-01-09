@@ -1,8 +1,7 @@
-'use client'
 import {GetWarehousesForSelect} from "@/app/lib/GetWarehousesForSelect";
-export function SelectWarehouseOptions(){
-    const data = GetWarehousesForSelect();
-    const resultOptions = [];
+export async function SelectWarehouseOptions(){
+    const data = await GetWarehousesForSelect();
+    let resultOptions = [];
 
     if (data == null){
         return(
@@ -18,9 +17,8 @@ export function SelectWarehouseOptions(){
     data.forEach(w => resultOptions.push(
         <option value={w.idWrhs}>{w.nameWrhs}</option>
     ))
-
     return (
-        <select name={'warehouses'}>
+        <select className='px-4 py-2 rounded grow' name={'warehouses'} id={'warehouses'}>
             {resultOptions}
         </select>
     )
