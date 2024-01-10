@@ -3,8 +3,8 @@
 export async function EditStock(currentState, formData){
 
     const data = {
-        MaterialId: formData.get('materialId'),
-        WarehouseId: formData.get('warehouseId'),
+        MaterialId: formData.get('idMat'),
+        WarehouseId: formData.get('idWrhs'),
         Quantity: formData.get('quantity')
     };
 
@@ -29,6 +29,6 @@ export async function EditStock(currentState, formData){
         return {message:'Stock record updated successfully.', style:'text-green-700'}
     }
 
-    return {message:'Failed to update stock record.', style:'text-red-700'}
+    return {message:'Failed to update stock record 1.', style:'text-red-700'}
 
 }

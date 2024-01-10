@@ -12,7 +12,7 @@ export default function EditButton({item, type}) {
         urlToRedirect = `/dashboard/edit/warehouse?warehouseId=${item.idWrhs}&warehouseName=${item.nameWrhs}&warehouseTel=${item.telWrhs}&warehouseStrt2=${item.strt2Wrhs}&warehouseStrt=${item.strtWrhs}&warehouseStrt3=${item.strt3Wrhs}&warehouseCity=${item.cityWrhs}&warehousePost=${item.postWrhs}&warehouseState=${item.stateWrhs}`;
     }
     if (type==='stock'){
-        urlToRedirect = `/dashboard/edit/stock?materialId=${item.idWrhs}&warehouseId=${item.idWrhs}`;
+        urlToRedirect = `/dashboard/edit/stock?materialId=${item.idMat}&warehouseId=${item.idWrhs}&quantity=${item.quantity}`;
     }
     return (
         <button onClick={()=>router.push(urlToRedirect)}>
