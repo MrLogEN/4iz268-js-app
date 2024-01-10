@@ -51,7 +51,7 @@ export default function StockItem({stock}){
 
 function MaterialStockRecord({record}){
     return(
-        <div className='grid grid-cols-6 gap-2'>
+        <div className='grid grid-cols-6 gap-2' id={record.idMat}>
             <div className='col-span-2'>{record.idMat}</div>
             <div className='col-span-2'>{record.nameMat}</div>
             <div>{record.quantity}</div>
@@ -65,7 +65,7 @@ function MaterialStockRecord({record}){
 function MaterialStockRecordList({records}){
     let matList = [];
     records.forEach(r => matList.push(
-        <MaterialStockRecord record={r}></MaterialStockRecord>
+        <MaterialStockRecord key={r.idMat} record={r}></MaterialStockRecord>
     ))
 
     return(

@@ -30,13 +30,12 @@ const ConfirmationAlert =async (item, type)=>{
 
             }
             if (type === 'stock'){
-                //#TODO element removal
+                element = document.getElementById(item.idMat);
             }
             element.remove();
         }
     }
 }
-
 export default function TrashButton({item, type}){
     return(
         <button title='Delete' onClick={()=>ConfirmationAlert(item, type)}>

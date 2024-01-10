@@ -18,7 +18,7 @@ export default function StockForm({warehouseOptions}){
     const [state, formAction] = useFormState(CreateNewStock, initialState)
 
     return (
-        <form className='flex flex-col gap-2' action={formAction}>
+        <form className='flex flex-col gap-2' action={formAction} >
             <label htmlFor='idWrhs'>Warehouse: </label>
             <div className='flex flex-row self-stretch'>
                 <input id='idWrhs' alt='warehouse id' name='idWrhs' className='border-2 rounded-md grow' type='text'
@@ -40,4 +40,15 @@ export default function StockForm({warehouseOptions}){
             </p>
         </form>
     );
+}
+
+function UpdateId(event){
+    const idInput = document.getElementById('idWrhs');
+    const selectValue = event.currentTarget.value();
+    idInput.innerText = selectValue;
+    idInput.value(selectValue);
+}
+function HookEventListener(){
+    const select = document.getElementById('warehouses');
+    select.addEventListener('change', (e)=>UpdateId(e));
 }
