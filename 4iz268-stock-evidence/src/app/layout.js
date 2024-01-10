@@ -10,7 +10,7 @@ export const metadata = {
     description: 'Evidence of material stock of fictional company.',
     authors: [{name: 'Vilém Charwot', url: 'https://eso.vse.cz/~chav07/portfolio'}],
     creator: 'Vilém Charwot',
-    applicationName: 'Stock Evidence',
+    applicationName: 'Stock Evidence'
     //viewport: 'width=device-width, initial-scale=1.0'
 }
 export const viewport ={
