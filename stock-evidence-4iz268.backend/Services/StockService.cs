@@ -108,6 +108,8 @@ public class StockService
 
 public record MaterialStockDto(string idWrhs,string nameWrhs ,string idMat, string nameMat, double Quantity);
 
+public record WarehouseStockDto(string idMat, string nameMat, string idWrhs, string nameWrhs, double Quantity);
+
 public record StockDto(string MaterialId, string WarehouseId, double Quantity);
 public record StockDtoIds(string MaterialId, string WarehouseId);
 
