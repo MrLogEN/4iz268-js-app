@@ -104,6 +104,27 @@ public class StockService
             .ToListAsync();
         return result;
     }
+    public async Task<IEnumerable<WarehouseStockDto>> GetMaterialsWarehouses(string materialId)
+    {
+        var result = await _context.Stocks
+            .Join(_context.Wrhs,
+                s => s.IdWrhs,
+                w => w.IdWrhs,
+                (s, w) => new
+                {
+                    w.IdWrhs,
+                    w.NameWrhs,
+                    s.IdMat,
+                    s.QuantStock
+                }
+            ).Join(_context.Mats,
+                q => q.IdMat,
+                m => m.IdMat,
+                (q, m) =>
+                    new WarehouseStockDto(q.IdMat, m.NameMat, q.IdWrhs, q.NameWrhs, q.QuantStock)
+            ).ToListAsync();
+        return result;
+    }
 }
 
 public record MaterialStockDto(string idWrhs,string nameWrhs ,string idMat, string nameMat, double Quantity);
