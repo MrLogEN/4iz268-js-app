@@ -1,9 +1,9 @@
 'use client'
 import {DeleteMaterial} from "@/app/lib/DeleteMaterial";
-import {usePathname} from "next/navigation";
 import {DeleteWarehouse} from "@/app/lib/DeleteWarehouse";
 import {DeleteStock} from "@/app/lib/DeleteStock";
 const ConfirmationAlert =async (item, type)=>{
+
     let deleteFunc = async (item)=>false;
 
     if (type === 'material'){
@@ -21,22 +21,23 @@ const ConfirmationAlert =async (item, type)=>{
         const deleted = await deleteFunc(item);
         if (deleted){
             let element = null;
-
             if (type === 'material'){
-                element  = document.getElementById(item.idMat);
+                //element  = document.getElementById(item.idMat);
+
             }
             if (type === 'warehouse'){
-                element  = document.getElementById(item.idWrhs);
+                //element  = document.getElementById(item.idWrhs);
 
             }
             if (type === 'stock'){
-                element = document.getElementById(item.idMat);
+                //element = document.getElementById(item.idMat);
             }
-            element.remove();
+            //element.remove();
         }
     }
 }
 export default function TrashButton({item, type}){
+
     return(
         <button title='Delete' onClick={()=>ConfirmationAlert(item, type)}>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
