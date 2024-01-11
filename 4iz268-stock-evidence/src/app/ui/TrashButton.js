@@ -23,10 +23,11 @@ const ConfirmationAlert =async (item, type, onRemoveFunc)=>{
             let element = null;
             if (type === 'material'){
                 //element  = document.getElementById(item.idMat);
-
+                onRemoveFunc(false);
             }
             if (type === 'warehouse'){
                 //element  = document.getElementById(item.idWrhs);
+                onRemoveFunc(false);
 
             }
             if (type === 'stock'){
