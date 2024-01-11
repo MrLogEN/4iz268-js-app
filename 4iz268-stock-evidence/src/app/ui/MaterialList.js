@@ -1,5 +1,4 @@
 import GetMaterials from "@/app/lib/GetMaterials";
-import MaterialItem from "@/app/ui/MaterialItem";
 import MaterialItem2 from "@/app/ui/MaterialItem2";
 export default async function MaterialList(){
     const result = await GetMaterials();

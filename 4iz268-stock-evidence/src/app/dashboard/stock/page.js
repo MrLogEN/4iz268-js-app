@@ -1,11 +1,8 @@
 'use client'
 
 import {useFormState, useFormStatus} from "react-dom";
-import StockItem from "@/app/ui/StockItem";
 import {GetStockByWarehouse} from "@/app/lib/GetStockByWarehouse";
 import {GetStockByMaterial} from "@/app/lib/GetStockByMaterial";
-import StockWarehouseRecord from "@/app/ui/StockWarehouseRecord";
-import StockMaterialRecordList from "@/app/ui/StockMaterialRecordList";
 import StockWarehouseRecordList from "@/app/ui/StockWarehouseRecordList";
 
 

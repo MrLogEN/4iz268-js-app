@@ -1,7 +1,5 @@
 'use client'
 
-
-import ToolsGroup from "@/app/ui/ToolsGroup";
 import StockMaterialRecordList from "@/app/ui/StockMaterialRecordList";
 
 function collapseDetails(event){
