@@ -3,12 +3,10 @@ import MaterialItem from "@/app/ui/MaterialItem";
 import MaterialItem2 from "@/app/ui/MaterialItem2";
 export default async function MaterialList(){
     const result = await GetMaterials();
-    // return (
-    //     <p>{result?.length}</p>
-    // )
+
     if (result == null || result?.length < 1){
         return (
-            <p>Zadny material</p>
+            <p>No material yet.</p>
         )
     }
     else{
