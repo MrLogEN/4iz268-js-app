@@ -4,6 +4,9 @@ import {useFormState, useFormStatus} from "react-dom";
 import StockItem from "@/app/ui/StockItem";
 import {GetStockByWarehouse} from "@/app/lib/GetStockByWarehouse";
 import {GetStockByMaterial} from "@/app/lib/GetStockByMaterial";
+import StockWarehouseRecord from "@/app/ui/StockWarehouseRecord";
+import StockMaterialRecordList from "@/app/ui/StockMaterialRecordList";
+import StockWarehouseRecordList from "@/app/ui/StockWarehouseRecordList";
 
 
 const initialState = {
@@ -21,20 +24,19 @@ function SubmitButton(){
 async function FindRecords(currentState, formData){
     const wId = formData.get('idWrhs');
     const mId = formData.get('idMat');
-    let type = 'byWarehouse';
     let result = null;
     if(wId){
        result = await GetStockByWarehouse(wId);
-       type = 'byWarehouse';
+       //type = 'byWarehouse';
     }
     if (!wId && mId){
         result = await GetStockByMaterial(mId);
-        type = 'byMaterial';
+        //type = 'byMaterial';
     }
     if (result){
         //return {data: (<p>{JSON.stringify(result)}</p>)}
 
-        return{ data: (<ul><StockItem stock={result} byType={type}></StockItem></ul>)}
+        return{ data: (<StockWarehouseRecordList stocks={result}></StockWarehouseRecordList>)}
     }
     return {data: (<p>No content</p>)}
 
@@ -56,9 +58,9 @@ export default function StockPage(){
                 </div>
                 <SubmitButton></SubmitButton>
             </form>
-            <div className='grid grid-cols-4'>
-                <div className='col-span-2'> Warehouse ID</div>
-                <div>Warehouse Name</div>
+            <div className='grid grid-cols-6 px-4 pt-4'>
+                <div className='col-span-3'> Warehouse ID</div>
+                <div className='col-span-3'>Warehouse Name</div>
             </div>
             {state?.data}
         </>
