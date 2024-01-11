@@ -2,6 +2,7 @@
 
 
 import ToolsGroup from "@/app/ui/ToolsGroup";
+import {useState} from "react";
 
 function collapseDetails(event){
     const caller = event.currentTarget;
@@ -50,25 +51,33 @@ export default function StockItem({stock}){
 }
 
 function MaterialStockRecord({record}){
+    const [isVisible, setVisibility] = useState(true);
+
+
     return(
-        <div className='grid grid-cols-6 gap-2' id={record.idMat}>
-            <div className='col-span-2'>{record.idMat}</div>
-            <div className='col-span-2'>{record.nameMat}</div>
-            <div>{record.quantity}</div>
-            <div className='flex flex-row self-stretch justify-end'>
-                <ToolsGroup type={'stock'} item={record}></ToolsGroup>
-            </div>
-        </div>
+        <>
+            { isVisible && (
+                    <div className='grid grid-cols-6 gap-2' id={record.idMat}>
+                        <div className='col-span-2'>{record.idMat}</div>
+                        <div className='col-span-2'>{record.nameMat}</div>
+                        <div>{record.quantity}</div>
+                        <div className='flex flex-row self-stretch justify-end'>
+                            <ToolsGroup type={'stock'} item={record} onRemoveFunc={setVisibility}></ToolsGroup>
+                        </div>
+                    </div>
+                )
+            }
+        </>
     )
 }
 
-function MaterialStockRecordList({records}){
+function MaterialStockRecordList({records}) {
     let matList = [];
     records.forEach(r => matList.push(
         <MaterialStockRecord key={r.idMat} record={r}></MaterialStockRecord>
     ))
 
-    return(
+    return (
         <div className='collapse px-4 py-2 text-sm text-gray-700'>
             {matList}
         </div>
