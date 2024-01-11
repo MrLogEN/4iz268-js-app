@@ -3,6 +3,7 @@
 import {useFormState, useFormStatus} from "react-dom";
 import StockItem from "@/app/ui/StockItem";
 import {GetStockByWarehouse} from "@/app/lib/GetStockByWarehouse";
+import {GetStockByMaterial} from "@/app/lib/GetStockByMaterial";
 
 
 const initialState = {
@@ -19,16 +20,21 @@ function SubmitButton(){
 
 async function FindRecords(currentState, formData){
     const wId = formData.get('idWrhs');
-
+    const mId = formData.get('idMat');
+    let type = 'byWarehouse';
     let result = null;
     if(wId){
        result = await GetStockByWarehouse(wId);
-
+       type = 'byWarehouse';
+    }
+    if (!wId && mId){
+        result = await GetStockByMaterial(mId);
+        type = 'byMaterial';
     }
     if (result){
         //return {data: (<p>{JSON.stringify(result)}</p>)}
 
-        return{ data: (<StockItem stock={result}></StockItem>)}
+        return{ data: (<ul><StockItem stock={result} byType={type}></StockItem></ul>)}
     }
     return {data: (<p>No content</p>)}
 
@@ -51,7 +57,7 @@ export default function StockPage(){
                 <SubmitButton></SubmitButton>
             </form>
             <div className='grid grid-cols-4'>
-                <div className='col-span-2'>Warehouse ID</div>
+                <div className='col-span-2'> Warehouse ID</div>
                 <div>Warehouse Name</div>
             </div>
             {state?.data}

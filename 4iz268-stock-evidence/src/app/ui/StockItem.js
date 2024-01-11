@@ -23,15 +23,25 @@ function collapseDetails(event){
 
 }
 
-export default function StockItem({stock}){
+export default function StockItem({stock, byType}){
     let wname = '';
     let wid = '';
     if (stock.length > 0){
         wid = stock[0].idWrhs;
         wname = stock[0].nameWrhs;
     }
+
+    if (byType === 'byMaterial'){
+        const byWrhs = MapWarehouses(stock);
+        return (
+            <>
+                {byWrhs}
+            </>
+        );
+    }
+
     return(
-        <div>
+        <li>
             <div className='grid grid-cols-4 bg-gray-100 px-4 py-2'>
                 <div className='col-span-2'>{wid}</div>
                 <div>{wname}</div>
@@ -46,7 +56,7 @@ export default function StockItem({stock}){
                 </div>
             </div>
             <MaterialStockRecordList records={stock}></MaterialStockRecordList>
-        </div>
+        </li>
     )
 }
 
@@ -71,15 +81,42 @@ function MaterialStockRecord({record}){
     )
 }
 
-function MaterialStockRecordList({records}) {
+function MaterialStockRecordList({records, idWrhs}) {
     let matList = [];
-    records.forEach(r => matList.push(
+    records.forEach(r => r.idWrhs === idWrhs ?  matList.push(
         <MaterialStockRecord key={r.idMat} record={r}></MaterialStockRecord>
-    ))
+    ): null)
 
     return (
-        <div className='collapse px-4 py-2 text-sm text-gray-700'>
+        <div className='flex flex-row collapse px-4 py-2 text-sm text-gray-700'>
             {matList}
         </div>
+    )
+}
+
+function MapWarehouses(stock){
+    let warehouseList = [];
+    stock.forEach(s => warehouseList.push(
+        <li key={s.idWrhs}>
+            <div className='grid grid-cols-4 bg-gray-100 px-4 py-2'>
+                <div className='col-span-2'>{s.idWrhs}</div>
+                <div>{s.nameWrhs}</div>
+                <div className='flex flex-row self-stretch justify-end'>
+                    <div className='flex ' onClick={collapseDetails} onLoad={collapseDetails}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path
+                                d="M15.384 10.5951L9.68303 5.26906C9.28003 4.89306 8.64603 4.91306 8.27003 5.31706C7.89303 5.72106 7.91403 6.35406 8.31703 6.73106L13.958 12.0001L8.31703 17.2691C7.91403 17.6461 7.89203 18.2791 8.26903 18.6831C8.46603 18.8941 8.73203 19.0001 9.00003 19.0001C9.24503 19.0001 9.49003 18.9111 9.68303 18.7311L15.384 13.4051C15.781 13.0331 16 12.5351 16 12.0001C16 11.4651 15.781 10.9671 15.384 10.5951Z"
+                                fill="#1F2A37"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <MaterialStockRecordList records={stock} idWrhs={s.idWrhs}></MaterialStockRecordList>
+        </li>
+    ));
+    return (
+        <>
+            {warehouseList}
+        </>
     )
 }
