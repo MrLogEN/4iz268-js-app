@@ -1,3 +1,6 @@
+export const metadata = {
+    title: 'Stock Evidence - Edit Stock'
+}
 export default function EditStockLayout({children}){
     return(
         <>
