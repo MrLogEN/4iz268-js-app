@@ -22,16 +22,13 @@ async function FindRecords(currentState, formData){
     const wId = formData.get('idWrhs');
     const mId = formData.get('idMat');
     let result = null;
-    if(wId){
+    if(wId || wId !== ""){
        result = await GetStockByWarehouse(wId);
-       //type = 'byWarehouse';
     }
     if (!wId && mId){
         result = await GetStockByMaterial(mId);
-        //type = 'byMaterial';
     }
     if (result){
-        //return {data: (<p>{JSON.stringify(result)}</p>)}
 
         return{ data: (<StockWarehouseRecordList stocks={result}></StockWarehouseRecordList>)}
     }

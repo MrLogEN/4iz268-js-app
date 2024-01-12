@@ -4,7 +4,7 @@ export default function StockWarehouseRecordList({stocks}){
 
     if (stocks.length < 1){
         return (
-            <p>No content</p>
+            <p className='px-4 text-xl'>No content</p>
         );
     }
 
@@ -26,7 +26,6 @@ export default function StockWarehouseRecordList({stocks}){
         resultWarehouseList.push(
           <StockWarehouseRecord key={filteredStock[0].idWrhs} filteredStock={filteredStock}></StockWarehouseRecord>
         );
-        console.log(resultWarehouseList.length);
 
     });
     return(
