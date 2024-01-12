@@ -117,7 +117,8 @@ public class StockService
                     s.IdMat,
                     s.QuantStock
                 }
-            ).Join(_context.Mats,
+            ).Where(s => s.IdMat == materialId)
+            .Join(_context.Mats,
                 q => q.IdMat,
                 m => m.IdMat,
                 (q, m) =>
