@@ -14,6 +14,10 @@ jobs:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
     name: Build and Deploy Job
+
+    env:
+      STOCK_API_ROUTE: https://4iz268-jsapp-api.charwot.cz
+
     steps:
       - uses: actions/checkout@v3
         with:
