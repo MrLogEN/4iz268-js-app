@@ -1,3 +1,6 @@
+export const metadata = {
+    title: 'Stock Evidence - Stock'
+}
 export default function StockLayout({children}){
     return(
         <>
