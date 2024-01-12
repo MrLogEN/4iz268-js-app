@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     env:
-      STOCK_API_ROUTE: ${{env.STOCK_API_ROUTE}}
+      STOCK_API_ROUTE: https://4iz268-jsapp-api.charwot.cz
     
     steps:
       - uses: actions/checkout@v2
