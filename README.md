@@ -1,8 +1,9 @@
 This project was created for the 4IZ268 Web Technology course at Prague University of Economics and Business.
 
 ## How to run the app
+First, you need to install [Node.js 20 LTS](https://nodejs.org/en).
 
-First, run the development server:
+Second, navigate to the folder with the sorce code and run the development server:
 
 ```bash
 npm run dev
