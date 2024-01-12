@@ -14,8 +14,9 @@ export default async function CreateNewMaterial(currentState, formData){
         DescMat: formData.get('descMat'),
         UnitMat: formData.get('unitMat')
     }
+    const replacer = (key, value) => (value === null ? null : value);
 
-    const requestData = JSON.stringify(newMaterial);
+    const requestData = JSON.stringify(newMaterial, replacer);
     try {
         const envVar = process.env.STOCK_API_ROUTE;
         const apiUrl = `${envVar}/api/material`; //localhost:5098

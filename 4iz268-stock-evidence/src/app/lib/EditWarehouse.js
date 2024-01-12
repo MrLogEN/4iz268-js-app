@@ -15,11 +15,13 @@ export async function EditWarehouse(currentState, formData){
         PostWrhs: formData.get('postWrhs'),
         StateWrhs: formData.get('stateWrhs'),
     }
+    const replacer = (key, value) => (value === null ? null : value);
+
 
     try {
         const envVar = process.env.STOCK_API_ROUTE;
         const apiUrl = `${envVar}/api/warehouse/${newWarehouse.IdWrhs}`; //localhost:5098
-        const warehouse = JSON.stringify(newWarehouse);
+        const warehouse = JSON.stringify(newWarehouse, replacer);
 
         const response = await fetch(apiUrl,{
             method: 'PUT',

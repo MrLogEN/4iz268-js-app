@@ -12,7 +12,6 @@ export async function CreateNewStock(status, formData){
     }
     const apiRoute = process.env.STOCK_API_ROUTE;
     const url = `${apiRoute}/api/stock`;
-
     const stringData = JSON.stringify(data);
     const response = await fetch(url, {
         method: 'POST',

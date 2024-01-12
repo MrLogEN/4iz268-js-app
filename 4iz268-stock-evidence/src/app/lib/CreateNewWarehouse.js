@@ -16,7 +16,9 @@ export async function CreateNewWarehouse(currentState, formData){
         StateWrhs: formData.get('stateWrhs'),
     }
     try {
-        const data = JSON.stringify(newWarehouse);
+        const replacer = (key, value) => (value === null ? null : value);
+
+        const data = JSON.stringify(newWarehouse, replacer);
 
         const envVar = process.env.STOCK_API_ROUTE;
         const url = `${envVar}/api/warehouse`;
