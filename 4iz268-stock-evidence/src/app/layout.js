@@ -2,6 +2,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import MainMenuItem from "@/app/ui/MainMenuItem";
 import Link from "next/link";
+import Image from "next/image";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -36,7 +37,7 @@ export default function RootLayout({ children }) {
         </div>
         <footer className='flex self-stretch grow flex-row py-4 w-full justify-center text-gray-500 gap-2 fixed bottom-0 left-0 bg-white z-1'>
             <div className='flex flex-row pr-2 gap-2'>
-                <img src={'/images/evidenceLogo.svg'} className='h-6' alt='Stock Evidence Co. logo'></img>
+                <Image src={'/images/evidenceLogo.svg'} className='h-6' alt='Stock Evidence Co. logo' width={24} height={24}></Image>
                 <p>&#0169;2023 Vilém Charwot</p>
             </div>
             <Link href={'/'}>Home</Link>
